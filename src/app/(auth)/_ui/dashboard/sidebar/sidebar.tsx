@@ -43,11 +43,6 @@ const menuItems = [
                 path: "/dashboard/help",
                 icon: <MdHelp />
             },
-            {
-                title: "Logout",
-                path: "/dashboard/settings",
-                icon: <MdLogout />
-            },
         ]
     }
 ]
@@ -72,8 +67,12 @@ const Sidebar = () => {
                         ))}
                     </li>
                 ))}
-
             </ul>
+
+            <button className={styles.logout}>
+                <MdLogout />
+                Logout
+            </button>
 
         </div>
     )

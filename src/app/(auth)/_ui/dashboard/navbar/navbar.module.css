@@ -15,20 +15,19 @@
 
 .icons{
     display: flex;
-    align-items: center;
     gap: 16px;
 }
 
 .menu{
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 16px;
 }
 
 .search{
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     background-color: #2e374a;
     padding: 10px;
     border-radius: 10px;
@@ -37,6 +36,7 @@
 }
 
 .searchInput{
+    
     background-color: transparent;
     border: none;
     color: var(--text);

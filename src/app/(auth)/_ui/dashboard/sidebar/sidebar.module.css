@@ -37,3 +37,18 @@
     font-size: 13px;
     margin: 10px 0px;
 }
+
+.logout{
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 5px;
+    border-radius: 8px;
+    width: 100%;
+
+}
+.logout:hover{	
+    background-color: #2e374a;
+    color: red;
+}
