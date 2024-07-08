@@ -1,6 +1,6 @@
 import Navbar from "@/app/(auth)/_ui/dashboard/navbar/navbar"
 import Sidebar from "@/app/(auth)/_ui/dashboard/sidebar/sidebar"
-import styles from "@/app/(auth)/_ui/dashboard/dashboard.module.css"
+import styles from "@/app/(auth)/dashboard/dashboard.module.css"
 import "./style.css"
 import Footer from "../_ui/dashboard/footer/footer"
 

@@ -1,7 +1,9 @@
+import styles from './help.module.css'
+
 const HelpPage = () => {
 
     return (
-        <div>
+        <div className={styles.container}>
             
         </div>
     )
