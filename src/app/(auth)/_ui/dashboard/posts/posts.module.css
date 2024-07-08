@@ -1,0 +1,45 @@
+.container{
+    background-color: var(--bgSoft);
+    padding: 18px;
+    border-radius: 10px;
+}
+
+.title{
+    margin-bottom: 20px;
+    font-weight: 200;
+    color: var(--textSoft);
+
+}
+
+.table{
+    width: 100%;
+}
+
+.table td{
+    padding: 10px;
+}
+.user{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.userImage{
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.status{
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 12px;
+    color: white;
+}
+
+.posted{
+    background-color: crimson;
+}
+
+.notposted{
+    background-color: lime;
+}

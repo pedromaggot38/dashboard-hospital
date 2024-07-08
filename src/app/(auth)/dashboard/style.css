@@ -2,7 +2,8 @@
     --bg: #151c2c;
     --bgSoft: #182237;
     --text: #fff;
-    --textSoft: #b7bac1
+    --textSoft: #b7bac1;
+    --selected: #2e374a;
 }
 
 body{

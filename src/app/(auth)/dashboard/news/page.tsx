@@ -1,4 +1,4 @@
-const PostsPage = () => {
+const NewsPage = () => {
 
     return (
         <div>
@@ -7,4 +7,4 @@ const PostsPage = () => {
     )
 }
 
-export default PostsPage
+export default NewsPage

@@ -1,6 +1,5 @@
 .container{
     position: sticky;
-    top: 40px;
 }
 
 .user{
@@ -49,6 +48,6 @@
 
 }
 .logout:hover{	
-    background-color: #2e374a;
+    background-color: var(--selected);
     color: red;
 }

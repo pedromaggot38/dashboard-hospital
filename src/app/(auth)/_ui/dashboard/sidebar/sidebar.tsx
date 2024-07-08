@@ -24,8 +24,8 @@ const menuItems = [
                 icon: <FaUsers />
             },
             {
-                title: "Posts",
-                path: "/dashboard/posts",
+                title: "News",
+                path: "/dashboard/news",
                 icon: <FaNewspaper />
             },
         ],
