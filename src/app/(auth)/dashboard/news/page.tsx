@@ -8,9 +8,9 @@ const NewsPage = () => {
     return (
         <div className={styles.container}>
             <div className={styles.top}>
-                <Search placeholder="Look for news" />
+                <Search placeholder="Search for news" />
                 <Link href="/dashboard/news/newpost" className={styles.newPost}>
-                    <button className={styles.addButton}>Add User</button>
+                    <button className={styles.addButton}>Add Post</button>
                 </Link>
             </div>
             <table className={styles.table}>
@@ -18,6 +18,7 @@ const NewsPage = () => {
                     <tr>
                         <td>Title</td>
                         <td>Description</td>
+                        <td>Username</td>
                         <td>Published</td>
                         <td>Created at</td>
                     </tr>
@@ -25,12 +26,13 @@ const NewsPage = () => {
                 <tbody>
                     <tr>
                         <td>
-                            <div className={styles.title}>
+                            <div className={styles.post}>
                                 <span className={styles.userName}>USA War News</span>
                             </div>
                         </td>
                         <td>Lorem ipsum dolor sit amet consectetur adipisicing elit...</td>
-                        <td>Published</td>
+                        <td>Pedro</td>
+                        <td><span className={`${styles.status} ${styles.notposted}`}>Not posted</span></td>
                         <td>24/05/2024</td>
                         <td>
                             <div className={styles.buttons}>

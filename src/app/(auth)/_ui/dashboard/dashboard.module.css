@@ -1,12 +1,12 @@
 .container {
     display: flex;
-    height: 100vh;
 }
 
 .menu {
     flex: 1;
     background-color: var(--bgSoft);
     padding: 14px;
+    min-height: 100vh;
 }
 
 .content {
