@@ -11,11 +11,11 @@
 
 .content {
     flex: 7;
-    padding: 14px;
+    padding: 20px;
 }
 
 .wrapper {
-    margin-top: 14px;
+    margin-top: 20px;
     display: flex;
 }
 

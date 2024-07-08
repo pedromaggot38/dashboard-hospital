@@ -1,0 +1,17 @@
+.container{
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--selected);
+    padding: 10px;
+    border-radius: 10px;
+    width: max-content;
+}
+
+.searchInput{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+}
