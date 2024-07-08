@@ -1,4 +1,4 @@
-import styles from '@/app/(auth)/_ui/dashboard/news/news.module.css'
+import styles from './news.module.css'
 import Search from '@/app/(auth)/_ui/dashboard/search/search'
 import Link from 'next/link'
 import Image from 'next/image'

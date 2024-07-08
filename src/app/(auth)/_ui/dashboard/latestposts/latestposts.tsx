@@ -1,7 +1,7 @@
 import Image from "next/image";
-import styles from "./posts.module.css";
+import styles from "./latestposts.module.css";
 
-const Posts = () => {
+const LatestPosts = () => {
     return (
         <div className={styles.container}>
             <h2 className={styles.title}>Latest Posts</h2>
@@ -66,4 +66,4 @@ const Posts = () => {
     );
 };
 
-export default Posts;
+export default LatestPosts;

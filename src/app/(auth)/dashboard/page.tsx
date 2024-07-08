@@ -1,6 +1,6 @@
-import Card from "../_ui/dashboard/card/card";
-import styles from "../_ui/dashboard/dashboard.module.css";
-import Posts from "../_ui/dashboard/latestposts/posts";
+import Card from "@/app/(auth)/_ui/dashboard/card/card";
+import styles from "./dashboard.module.css";
+import Posts from "@/app/(auth)/_ui/dashboard/latestposts/latestposts";
 import Rightbar from "../_ui/dashboard/rightbar/rightbar";
 const Dashboard = () => {
     return (
