@@ -2,14 +2,15 @@ import styles from '@/app/(auth)/_ui/dashboard/users/users.module.css'
 import Search from '../../_ui/dashboard/search/search'
 import Link from 'next/link'
 import Image from 'next/image'
+import Pagination from '../../_ui/dashboard/pagination/pagination'
 const UsersPage = () => {
 
     return (
         <div className={styles.container}>
             <div className={styles.top}>
                 <Search placeholder="Search for a user" />
-                <Link href="/dashboard/users/new" className={styles.newUser}>
-                    <button className={styles.addButton}>Add User</button>
+                <Link href="/dashboard/users/newuser" className={styles.newUser}>
+                    <button className={styles.addButton}>New User</button>
                 </Link>
             </div>
             <table className={styles.table}>
@@ -19,7 +20,6 @@ const UsersPage = () => {
                         <td>Email</td>
                         <td>Role</td>
                         <td>Created at</td>
-                        <td>Actions</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,6 +49,7 @@ const UsersPage = () => {
                     </tr>
                 </tbody>
             </table>
+            <Pagination />
         </div>
     )
 }
