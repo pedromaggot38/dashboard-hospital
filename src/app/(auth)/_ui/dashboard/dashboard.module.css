@@ -1,5 +1,6 @@
 .container {
     display: flex;
+    height: 100vh;
 }
 
 .menu {
@@ -11,7 +12,6 @@
 .content {
     flex: 7;
     padding: 14px;
-    
 }
 
 .wrapper {

@@ -37,9 +37,9 @@
 }
 
 .posted{
-    background-color: crimson;
+    background-color: green;
 }
 
 .notposted{
-    background-color: lime;
+    background-color: crimson;
 }
