@@ -14,7 +14,7 @@ const SingleUserPage = () => {
             <div className={styles.formContainer}>
                 <form action="" className={styles.form}>
                     <label>ID</label>
-                    <input type="text" name='id' placeholder='id' />
+                    <input type="text" name='id' placeholder='id' readOnly />
 
                     <label>Name</label>
                     <input type="text" name='name' placeholder='Pedro' />
@@ -40,7 +40,11 @@ const SingleUserPage = () => {
 
                     <label>Created at</label>
                     <input type="date" name='createdat' placeholder='24-05-2024' />
-                    <button className={styles.submitButton}>Update</button>
+
+                    <div className={styles.buttons}>
+                        <button className={styles.changePasswordButton}>Change Password</button>
+                        <button className={styles.submitButton}>Update</button>
+                    </div>
                 </form>
             </div>
         </div>

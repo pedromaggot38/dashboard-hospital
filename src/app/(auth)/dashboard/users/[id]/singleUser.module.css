@@ -50,6 +50,27 @@
     font-size: 12px;
 }
 
+.buttons{
+    display: flex;
+    gap: 25px;
+}
+
+.changePasswordButton{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 15px;
+    background-color: var(--blue);
+    color: var(--text);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: max-content;
+}
+.changePasswordButton:hover{
+    background-color: var(--blueSoft);
+}
+
 .submitButton{
     display: flex;
     align-items: center;
