@@ -74,9 +74,9 @@
 }
 
 .edit{
-    background-color: rgb(7, 91, 175);
+    background-color: var(--blue);
 }
 
 .edit:hover{
-    background-color: dodgerblue;
+    background-color: var(--blueSoft);
 }

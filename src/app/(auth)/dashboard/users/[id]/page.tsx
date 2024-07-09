@@ -17,7 +17,7 @@ const SingleUserPage = () => {
                     <input type="text" name='id' placeholder='id' />
 
                     <label>Name</label>
-                    <input type="text" name='Name' placeholder='Pedro' />
+                    <input type="text" name='name' placeholder='Pedro' />
 
                     <label>Username</label>
                     <input type="text" name='username' placeholder='pehbathory' />
