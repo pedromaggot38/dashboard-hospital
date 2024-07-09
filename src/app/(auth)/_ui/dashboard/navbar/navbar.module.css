@@ -32,13 +32,12 @@
     padding: 10px;
     border-radius: 10px;
     text-decoration: none;
-
+    
 }
 
 .searchInput{
-    
     background-color: transparent;
     border: none;
     color: var(--text);
-
+    outline: none;
 }
