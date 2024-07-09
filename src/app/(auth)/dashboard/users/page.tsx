@@ -35,7 +35,7 @@ const UsersPage = () => {
                         <td>24/05/2024</td>
                         <td>
                             <div className={styles.buttons}>
-                                <Link href="#">
+                                <Link href="/dashboard/users/teste">
                                     <button className={`${styles.button} ${styles.edit}`}>Edit</button>
                                 </Link>
                                 <Link href="#">
