@@ -17,10 +17,12 @@
 .userDetail{
     display: flex;
     flex-direction: column;
+    max-width: 100%;
 }
 .userName{
     font-weight: 500;
 }
+
 .userRole{
     font-weight: 200;
     color: var(--textSoft);
@@ -50,4 +52,20 @@
 .logout:hover{	
     background-color: var(--selected);
     color: red;
+}
+
+@media (max-width: 1500px) {
+    .userDetail {
+        max-width: 80%; /* Ajusta a largura máxima para dispositivos móveis */
+    }
+
+    .user {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .userName,
+    .userRole {
+        white-space: normal; /* Permite que o texto quebre em várias linhas */
+    }
 }

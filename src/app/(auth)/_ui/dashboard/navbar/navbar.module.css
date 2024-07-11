@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
     background-color: var(--bgSoft);
 }
@@ -29,7 +29,7 @@
     align-items: center;
     gap: 12px;
     background-color: var(--selected);
-    padding: 10px;
+    padding: 6px;
     border-radius: 10px;
     text-decoration: none;
     
