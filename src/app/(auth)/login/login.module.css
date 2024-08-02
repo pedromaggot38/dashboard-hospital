@@ -1,48 +1,10 @@
-.container {
+.container{
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: 100vh;
-    background-color: var(--bg);
-}
-
-.form {
-    background-color: var(--bgSoft);
-    padding: 50px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    width: 500px;
-    height: 500px;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-}
-
-.form input{
-    width: 100%;
-    padding: 25px;
-    border: 2px solid #2e374a;
-    border-radius: 5px;
+    height: 100vh;
     background-color: var(--bg);
     color: var(--text);
-}
-
-.form button{
-    width: 100%;
-    padding: 20px;
-    background-color: var(--button);
-    color: var(--text);
-    border: none;
-    cursor: pointer;
-}
-.form button:hover{
-    background-color: var(--buttonHover);
-}
-
-.title{
-    color: var(--text);
-    font-weight: bold;
-    font-size: 25px;
+    background-color: rgb(45, 45, 45);
 }
