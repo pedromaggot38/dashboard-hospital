@@ -1,8 +1,8 @@
 import styles from './users.module.css'
-import Search from '@/app/(auth)/_ui/dashboard/search/search'
+import Search from '@/components/auth/dashboard/search/search'
 import Link from 'next/link'
 import Image from 'next/image'
-import Pagination from '@/app/(auth)/_ui/dashboard/pagination/pagination'
+import Pagination from '@/components/auth/dashboard/pagination/pagination'
 const UsersPage = () => {
 
     return (
