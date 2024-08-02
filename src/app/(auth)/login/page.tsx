@@ -18,7 +18,6 @@ import { useTransition } from "react"
 import { login } from "../../../../actions/auth"
 
 export default function LoginForm() {
-
     const [isPending, startTransition] = useTransition()
 
     const form = useForm<z.infer<typeof CredentialsSchema>>({
@@ -30,15 +29,15 @@ export default function LoginForm() {
     })
 
     const onSubmit = async (values: z.infer<typeof CredentialsSchema>) => {
+        console.log("Form values:", values); // Log antes da transição
         startTransition(async () => {
             try {
-                const resp = await login(values)
+                const resp = await login(values);
+                console.log("Login response:", resp);
             } catch (error) {
-                
+                console.error("Error during login:", error);
             }
-        })
-
-        console.log(values)
+        });
     }
 
     return (
@@ -53,7 +52,6 @@ export default function LoginForm() {
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)}>
                         <CardContent className="grid gap-4">
-
                             <div className="grid gap-2">
                                 <FormField
                                     control={form.control}
@@ -98,7 +96,9 @@ export default function LoginForm() {
                             </div>
                         </CardContent>
                         <CardFooter>
-                            <Button type="submit" className="w-full" disabled={isPending}>Sign in</Button>
+                            <Button type="submit" className="w-full" disabled={isPending}>
+                                Sign in
+                            </Button>
                         </CardFooter>
                     </form>
                 </Form>
