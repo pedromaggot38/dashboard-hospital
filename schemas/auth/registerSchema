@@ -1,0 +1,11 @@
+import { z } from 'zod'
+
+export const RegisterSchema = z.object({
+    username: z.string().min(3),
+    password: z.string().min(6),
+    role: z.enum(['root', 'admin', 'journalist']),
+    isBlocked: z.boolean(),
+    name: z.string().min(3),
+    phone: z.string(),
+    email: z.string().email(),
+})

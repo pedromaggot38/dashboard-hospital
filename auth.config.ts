@@ -5,23 +5,21 @@ import { CredentialsSchema } from "./schemas/auth";
 export default {
     providers: [
         Credentials({
+            credentials: {
+                username: {},
+                password: {},
+            },
+
             async authorize(credentials) {
                 const validCredentials = await CredentialsSchema.safeParse(credentials)
 
                 if (validCredentials.success) {
                     const { username, password } = validCredentials.data
-
                     // TODO Buscar no banco de dados o usuário
-                    // Verificar a hashed password
+                    // TODO Verificar a hashed password
+                    // TODO Validar se o usuário não está desativado pelo root
 
-                    const user = {
-                        id: "1",
-                        name: "Pedro",
-                        username: "pehbathory",
-                        email: "LkCpE@example.com",
-                        role: "admin",
-                    }
-                    return user
+
                 }
 
                 return null
