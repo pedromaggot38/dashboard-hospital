@@ -40,41 +40,43 @@ const RegisterRootPage = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label>Nome de Usuário</label>
-        <input {...register('username')} />
-        {errors.username && <p>{errors.username.message}</p>}
-      </div>
+    <>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <label>Nome de Usuário</label>
+          <input {...register('username')} />
+          {errors.username && <p>{errors.username.message}</p>}
+        </div>
 
-      <div>
-        <label>Nome Completo</label>
-        <input {...register('name')} />
-        {errors.name && <p>{errors.name.message}</p>}
-      </div>
+        <div>
+          <label>Nome Completo</label>
+          <input {...register('name')} />
+          {errors.name && <p>{errors.name.message}</p>}
+        </div>
 
-      <div>
-        <label>Email</label>
-        <input {...register('email')} />
-        {errors.email && <p>{errors.email.message}</p>}
-      </div>
+        <div>
+          <label>Email</label>
+          <input {...register('email')} />
+          {errors.email && <p>{errors.email.message}</p>}
+        </div>
 
-      <div>
-        <label>Senha</label>
-        <input type='password' {...register('password')} />
-        {errors.password && <p>{errors.password.message}</p>}
-      </div>
+        <div>
+          <label>Senha</label>
+          <input type='password' {...register('password')} />
+          {errors.password && <p>{errors.password.message}</p>}
+        </div>
 
-      <div>
-        <label>Confirmar Senha</label>
-        <input type='password' {...register('passwordConfirm')} />
-        {errors.passwordConfirm && <p>{errors.passwordConfirm.message}</p>}
-      </div>
+        <div>
+          <label>Confirmar Senha</label>
+          <input type='password' {...register('passwordConfirm')} />
+          {errors.passwordConfirm && <p>{errors.passwordConfirm.message}</p>}
+        </div>
 
-      <button type='submit' disabled={mutation.isLoading}>
-        {mutation.isLoading ? 'Criando...' : 'Criar Usuário Root'}
-      </button>
-    </form>
+        <button type='submit' disabled={mutation.isLoading}>
+          {mutation.isLoading ? 'Criando...' : 'Criar Usuário Root'}
+        </button>
+      </form>
+    </>
   );
 };
 
