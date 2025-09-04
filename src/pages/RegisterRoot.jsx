@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import api from '../services/api.js';
 import { createRootSchema } from '@/models/userZodSchema.js';
@@ -12,6 +12,8 @@ const createRootUser = async (data) => {
 };
 
 const RegisterRootPage = () => {
+  const queryClient = useQueryClient();
+
   const {
     register,
     handleSubmit,
@@ -24,6 +26,7 @@ const RegisterRootPage = () => {
     mutationFn: createRootUser,
     onSuccess: () => {
       toast.success('Usuário root criado com sucesso!');
+      queryClient.invalidateQueries({ queryKey: ['rootStatus'] });
     },
     onError: (error) => {
       const errorMessage =
@@ -64,7 +67,7 @@ const RegisterRootPage = () => {
 
       <div>
         <label>Confirmar Senha</label>
-        <input type='passwordConfirm' {...register('passwordConfirm')} />
+        <input type='password' {...register('passwordConfirm')} />
         {errors.passwordConfirm && <p>{errors.passwordConfirm.message}</p>}
       </div>
 
