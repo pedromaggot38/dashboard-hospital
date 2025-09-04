@@ -1,11 +1,12 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
-import { loginSchema } from '@/models/userZodSchema.js'; //
-import api from '../services/api.js'; //
+import { loginSchema } from '@/models/userZodSchema.js';
+import api from '@/services/api.js';
 import toast from 'react-hot-toast';
+import { cn } from '@/lib/utils';
 
-// 1. Importar os componentes e ícones necessários
+// Componentes do Shadcn UI
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -23,15 +24,16 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { User, Lock, LogIn, LoaderCircle } from 'lucide-react';
+
+import { LoaderCircle, User, Lock, LogIn } from 'lucide-react';
+import { Navigate } from 'react-router-dom';
 
 const loginUser = async (data) => {
-  console.log('A tentar fazer login com:', data);
   const response = await api.post('/auth/login', data);
   return response.data;
 };
 
-const LoginPage = () => {
+export function LoginForm({ className, ...props }) {
   const form = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -43,10 +45,10 @@ const LoginPage = () => {
   const mutation = useMutation({
     mutationFn: loginUser,
     onSuccess: () => {
-      toast.success('Login realizado com sucesso! A redirecionar...');
-      // setTimeout(() => {
-      //   window.location.href = '/dashboard';
-      // }, 1000);
+      toast.success('Login realizado com sucesso!');
+      setTimeout(() => {
+        Navigate('/dashboard');
+      }, 1200);
     },
     onError: (error) => {
       const errorMessage =
@@ -60,17 +62,14 @@ const LoginPage = () => {
   };
 
   return (
-    <Card className='w-full max-w-md shadow-lg'>
-      <CardHeader className='text-center'>
-        <div className='mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10'>
-          <LogIn className='h-8 w-8 text-primary' />
-        </div>
-        <CardTitle className='text-2xl'>Aceder ao Painel</CardTitle>
+    <Card className={cn('w-full max-w-sm', className)} {...props}>
+      <CardHeader>
+        <CardTitle className='text-2xl'>Acesse sua conta</CardTitle>
         <CardDescription>
-          Use as suas credenciais para entrar no sistema.
+          Insira o seu nome de usuário e senha para entrar.
         </CardDescription>
       </CardHeader>
-      <CardContent className=''>
+      <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
             <FormField
@@ -78,15 +77,11 @@ const LoginPage = () => {
               name='username'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Nome de Usuário</FormLabel>
+                  <FormLabel>Nome de usuário</FormLabel>
                   <FormControl>
                     <div className='relative'>
                       <User className='absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground' />
-                      <Input
-                        placeholder='o_seu_usuario'
-                        {...field}
-                        className='pl-10'
-                      />
+                      <Input {...field} className='pl-10' />
                     </div>
                   </FormControl>
                   <FormMessage />
@@ -98,16 +93,13 @@ const LoginPage = () => {
               name='password'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Senha</FormLabel>
+                  <div className='flex items-center'>
+                    <FormLabel>Senha</FormLabel>
+                  </div>
                   <FormControl>
                     <div className='relative'>
                       <Lock className='absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground' />
-                      <Input
-                        type='password'
-                        placeholder='********'
-                        {...field}
-                        className='pl-10'
-                      />
+                      <Input type='password' {...field} className='pl-10' />
                     </div>
                   </FormControl>
                   <FormMessage />
@@ -127,10 +119,14 @@ const LoginPage = () => {
               {mutation.isLoading ? 'A entrar...' : 'Entrar'}
             </Button>
           </form>
+          <div className='mt-4 text-center text-sm'>
+            Esqueceu sua senha?{' '}
+            <a href='#' className='underline underline-offset-4'>
+              Recupere aqui
+            </a>
+          </div>
         </Form>
       </CardContent>
     </Card>
   );
-};
-
-export default LoginPage;
+}

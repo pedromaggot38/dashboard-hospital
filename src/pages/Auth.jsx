@@ -1,8 +1,7 @@
-import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import api from '../services/api';
-import LoginPage from './Login.jsx';
-import RegisterRootPage from './RegisterRoot.jsx';
+import { LoginForm } from '@/components/login-form.jsx';
+import { CreateRootForm } from '@/components/create-root-form.jsx';
 
 const checkRootStatus = async () => {
   const { data } = await api.get('/auth/check-root');
@@ -33,7 +32,7 @@ const AuthPage = () => {
     );
   }
 
-  return data?.data?.exists ? <LoginPage /> : <RegisterRootPage />;
+  return data?.data?.exists ? <LoginForm /> : <CreateRootForm />;
 };
 
 export default AuthPage;
