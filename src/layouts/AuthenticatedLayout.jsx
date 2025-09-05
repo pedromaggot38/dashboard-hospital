@@ -4,7 +4,11 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import api from '@/services/api.js';
 import { LoaderCircle } from 'lucide-react';
 import { AppSidebar } from '@/components/dashboard-sidebar.jsx';
-import { SidebarProvider } from '@/components/ui/sidebar.jsx';
+import {
+  Sidebar,
+  SidebarInset,
+  SidebarProvider,
+} from '@/components/ui/sidebar.jsx';
 
 const fetchUser = async () => {
   try {
@@ -45,17 +49,19 @@ const AuthenticatedLayout = () => {
 
   if (user) {
     return (
-      <div className='flex min-h-screen'>
-        <SidebarProvider>
-          <aside className='w-48 p-4 text-white'>
-            <AppSidebar />
-            {/* <p>Utilizador: {user.data.user.email}</p> */}
-          </aside>
-          <main className='flex-1 p-6'>
-            <Outlet />
-          </main>
-        </SidebarProvider>
-      </div>
+      <SidebarProvider
+        style={{
+          '--sidebar-width': '16rem',
+          '--sidebar-width-mobile': '20rem',
+        }}
+      >
+        <Sidebar>
+          <AppSidebar user={user.data.user} />
+        </Sidebar>
+        <SidebarInset className='p-4'>
+          <Outlet />
+        </SidebarInset>
+      </SidebarProvider>
     );
   }
 

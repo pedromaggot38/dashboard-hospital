@@ -3,6 +3,7 @@ import { Home, Newspaper, Settings, Stethoscope, Users } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -10,6 +11,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
+import { NavUser } from './nav-user.jsx';
+import { useLocation } from 'react-router-dom';
 
 const items = [
   {
@@ -39,7 +42,9 @@ const items = [
   },
 ];
 
-export function AppSidebar() {
+export function AppSidebar({ user }) {
+  const location = useLocation();
+
   return (
     <Sidebar>
       <SidebarContent>
@@ -49,7 +54,12 @@ export function AppSidebar() {
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton
+                    asChild
+                    size='md'
+                    className='text-base [&_svg]:size-8'
+                    isActive={location.pathname === item.url}
+                  >
                     <a href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
@@ -61,6 +71,9 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <NavUser user={user} />
+      </SidebarFooter>
     </Sidebar>
   );
 }
