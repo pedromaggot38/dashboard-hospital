@@ -55,7 +55,7 @@ const AuthenticatedLayout = () => {
           '--sidebar-width-mobile': '20rem',
         }}
       >
-        <Sidebar>
+        <Sidebar variant='inset'>
           <AppSidebar user={user.data.user} />
         </Sidebar>
         <SidebarInset className='p-4'>

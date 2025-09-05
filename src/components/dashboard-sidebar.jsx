@@ -12,7 +12,7 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { NavUser } from './nav-user.jsx';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const items = [
   {
@@ -22,22 +22,22 @@ const items = [
   },
   {
     title: 'Usuários',
-    url: '/dashboard/users',
+    url: '/users',
     icon: Users,
   },
   {
     title: 'Notícias',
-    url: '/dashboard/articles',
+    url: '/articles',
     icon: Newspaper,
   },
   {
     title: 'Médicos',
-    url: '/dashboard/doctors',
+    url: '/doctors',
     icon: Stethoscope,
   },
   {
     title: 'Settings',
-    url: '#',
+    url: '/settings',
     icon: Settings,
   },
 ];
@@ -46,10 +46,10 @@ export function AppSidebar({ user }) {
   const location = useLocation();
 
   return (
-    <Sidebar>
+    <Sidebar variant='inset' collapsible='offcanvas'>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>Hospital de Maracaí</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
@@ -60,10 +60,10 @@ export function AppSidebar({ user }) {
                     className='text-base [&_svg]:size-8'
                     isActive={location.pathname === item.url}
                   >
-                    <a href={item.url}>
+                    <Link to={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
