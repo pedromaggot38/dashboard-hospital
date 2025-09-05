@@ -10,6 +10,7 @@ const fetchUser = async () => {
   try {
     const { data } = await api.get('/users/me');
     return data;
+    // eslint-disable-next-line no-unused-vars
   } catch (error) {
     throw new Error('Não autenticado');
   }

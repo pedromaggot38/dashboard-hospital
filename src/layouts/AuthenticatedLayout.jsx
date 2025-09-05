@@ -3,11 +3,14 @@ import { useQuery } from '@tanstack/react-query';
 import { Outlet, useNavigate } from 'react-router-dom';
 import api from '@/services/api.js';
 import { LoaderCircle } from 'lucide-react';
+import { AppSidebar } from '@/components/dashboard-sidebar.jsx';
+import { SidebarProvider } from '@/components/ui/sidebar.jsx';
 
 const fetchUser = async () => {
   try {
     const { data } = await api.get('/users/me');
     return data;
+    // eslint-disable-next-line no-unused-vars
   } catch (error) {
     throw new Error('Utilizador não autenticado');
   }
@@ -43,13 +46,15 @@ const AuthenticatedLayout = () => {
   if (user) {
     return (
       <div className='flex min-h-screen'>
-        <aside className='w-64 bg-gray-800 p-4 text-white'>
-          <h2 className='text-xl font-bold'>Sidebar</h2>
-          <p>Utilizador: {user.data.user.email}</p>
-        </aside>
-        <main className='flex-1 p-6'>
-          <Outlet />
-        </main>
+        <SidebarProvider>
+          <aside className='w-48 p-4 text-white'>
+            <AppSidebar />
+            {/* <p>Utilizador: {user.data.user.email}</p> */}
+          </aside>
+          <main className='flex-1 p-6'>
+            <Outlet />
+          </main>
+        </SidebarProvider>
       </div>
     );
   }
