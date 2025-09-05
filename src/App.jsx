@@ -27,8 +27,11 @@ function App() {
           <Route element={<AuthenticatedLayout />}>
             <Route path='/dashboard' element={<DashboardPage />} />
             <Route path='/users' element={<UsersPage />} />
+            <Route path='/users/:username' element='' />
             <Route path='/doctors' element={<DoctorsPage />} />
+            <Route path='/doctors/:id' element='' />
             <Route path='/articles' element={<ArticlesPage />} />
+            <Route path='/articles/:id' element='' />
             <Route path='/settings' element={<SettingsPage />} />
           </Route>
         </Routes>

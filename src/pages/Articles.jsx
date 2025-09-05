@@ -44,8 +44,8 @@ export default function ArticlesPage() {
   }
 
   return (
-    <div className='my-8'>
-      <Card>
+    <div className='flex flex-1 flex-col'>
+      <Card className='flex-1'>
         <CardHeader>
           <CardTitle>Artigos</CardTitle>
           <CardDescription>
