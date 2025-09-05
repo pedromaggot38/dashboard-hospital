@@ -7,7 +7,6 @@ import api from '@/services/api.js';
 import toast from 'react-hot-toast';
 import { cn } from '@/lib/utils';
 
-// Componentes do Shadcn UI
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -26,10 +25,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
-// Ícones do Lucide
 import { LoaderCircle, Lock, KeyRound, Hash } from 'lucide-react';
 
-// A função de API agora espera o 'username' para a URL e o 'token' no corpo
 const resetPasswordRequest = async ({
   token,
   password,
@@ -61,9 +58,7 @@ export function ResetPasswordForm({ className, ...props }) {
     mutationFn: resetPasswordRequest,
     onSuccess: () => {
       toast.success('Senha redefinida com sucesso! Pode agora fazer o login.');
-      setTimeout(() => {
-        navigate('/');
-      }, 2000);
+      navigate('/');
     },
     onError: (error) => {
       const errorMessage =
@@ -88,7 +83,6 @@ export function ResetPasswordForm({ className, ...props }) {
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
-            {/* 4. Novo campo para o Token */}
             <FormField
               control={form.control}
               name='token'
@@ -109,7 +103,6 @@ export function ResetPasswordForm({ className, ...props }) {
                 </FormItem>
               )}
             />
-            {/* Campos de senha existentes */}
             <FormField
               control={form.control}
               name='password'

@@ -7,7 +7,6 @@ import toast from 'react-hot-toast';
 import { cn } from '@/lib/utils';
 import { useNavigate } from 'react-router-dom';
 
-// Componentes do Shadcn UI
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -26,12 +25,9 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
-// Ícones do Lucide
 import { LoaderCircle, User, MailQuestion } from 'lucide-react';
 
-// Função para a chamada de API de recuperação de senha
 const forgotPasswordRequest = async (data) => {
-  // A rota do back-end pode ser diferente, ajuste se necessário
   const response = await api.post('/auth/forgot-password', data);
   return response.data;
 };

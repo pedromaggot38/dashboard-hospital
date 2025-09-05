@@ -6,7 +6,6 @@ import api from '@/services/api.js';
 import toast from 'react-hot-toast';
 import { cn } from '@/lib/utils';
 
-// Componentes do Shadcn UI
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -26,7 +25,7 @@ import {
 import { Input } from '@/components/ui/input';
 
 import { LoaderCircle, User, Lock, LogIn } from 'lucide-react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const loginUser = async (data) => {
   const response = await api.post('/auth/login', data);
@@ -34,6 +33,8 @@ const loginUser = async (data) => {
 };
 
 export function LoginForm({ className, ...props }) {
+  const navigate = useNavigate();
+
   const form = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -46,9 +47,7 @@ export function LoginForm({ className, ...props }) {
     mutationFn: loginUser,
     onSuccess: () => {
       toast.success('Login realizado com sucesso!');
-      setTimeout(() => {
-        Navigate('/dashboard');
-      }, 1200);
+      navigate('/dashboard');
     },
     onError: (error) => {
       const errorMessage =

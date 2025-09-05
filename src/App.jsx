@@ -4,6 +4,8 @@ import AuthPage from './pages/Auth.jsx';
 import AuthLayout from './layouts/AuthLayout.jsx';
 import { ForgotPasswordForm } from './components/forgot-password-form.jsx';
 import { ResetPasswordForm } from './components/reset-password-form.jsx';
+import AuthenticatedLayout from './layouts/AuthenticatedLayout.jsx';
+import DashboardPage from './pages/Dashboard.jsx';
 
 function App() {
   return (
@@ -17,6 +19,9 @@ function App() {
               path='/reset-password/:username'
               element={<ResetPasswordForm />}
             />
+          </Route>
+          <Route element={<AuthenticatedLayout />}>
+            <Route path='/dashboard' element={<DashboardPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
