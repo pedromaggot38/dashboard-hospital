@@ -104,15 +104,11 @@ export function CreateRootForm({ className, ...props }) {
               name='username'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Utilizador</FormLabel>
+                  <FormLabel>Nome de usuário</FormLabel>
                   <FormControl>
                     <div className='relative'>
                       <User className='absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground' />
-                      <Input
-                        placeholder='seu_utilizador'
-                        {...field}
-                        className='pl-10'
-                      />
+                      <Input {...field} className='pl-10' />
                     </div>
                   </FormControl>
                   <FormMessage />

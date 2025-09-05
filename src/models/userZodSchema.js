@@ -135,7 +135,10 @@ export const forgotPasswordSchema = z.strictObject({
 });
 
 export const resetPasswordSchema = z
-  .object(passwordSchemaShape)
+  .object({
+    token: z.string().min(1, { message: 'O código token é obrigatório' }),
+    ...passwordSchemaShape,
+  })
   .refine((data) => data.password === data.passwordConfirm, {
     message: 'As senhas não coincidem',
     path: ['passwordConfirm'],

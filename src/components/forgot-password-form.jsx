@@ -1,10 +1,11 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
-import { loginSchema } from '@/models/userZodSchema.js';
+import { forgotPasswordSchema } from '@/models/userZodSchema.js';
 import api from '@/services/api.js';
 import toast from 'react-hot-toast';
 import { cn } from '@/lib/utils';
+import { useNavigate } from 'react-router-dom';
 
 // Componentes do Shadcn UI
 import { Button } from '@/components/ui/button';
@@ -25,34 +26,37 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
-import { LoaderCircle, User, Lock, LogIn } from 'lucide-react';
-import { Navigate } from 'react-router-dom';
+// Ícones do Lucide
+import { LoaderCircle, User, MailQuestion } from 'lucide-react';
 
-const loginUser = async (data) => {
-  const response = await api.post('/auth/login', data);
+// Função para a chamada de API de recuperação de senha
+const forgotPasswordRequest = async (data) => {
+  // A rota do back-end pode ser diferente, ajuste se necessário
+  const response = await api.post('/auth/forgot-password', data);
   return response.data;
 };
 
-export function LoginForm({ className, ...props }) {
+export function ForgotPasswordForm({ className, ...props }) {
+  const navigate = useNavigate();
+
   const form = useForm({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(forgotPasswordSchema),
     defaultValues: {
       username: '',
-      password: '',
     },
   });
 
   const mutation = useMutation({
-    mutationFn: loginUser,
-    onSuccess: () => {
-      toast.success('Login realizado com sucesso!');
-      setTimeout(() => {
-        Navigate('/dashboard');
-      }, 1200);
+    mutationFn: forgotPasswordRequest,
+    onSuccess: (_data, variables) => {
+      toast.success(
+        'Pedido enviado! Redirecionando para a redefinição de senha.'
+      );
+      navigate(`/reset-password/${variables.username}`);
     },
     onError: (error) => {
       const errorMessage =
-        error.response?.data?.message || 'Credenciais inválidas.';
+        error.response?.data?.message || 'Ocorreu um erro. Tente novamente.';
       toast.error(errorMessage);
     },
   });
@@ -64,9 +68,9 @@ export function LoginForm({ className, ...props }) {
   return (
     <Card className={cn('w-full max-w-sm', className)} {...props}>
       <CardHeader>
-        <CardTitle className='text-2xl'>Acesse sua conta</CardTitle>
+        <CardTitle className='text-2xl'>Recuperar Senha</CardTitle>
         <CardDescription>
-          Insira o seu nome de usuário e senha para entrar.
+          Insira o seu nome de usuário para recuperar.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -88,24 +92,6 @@ export function LoginForm({ className, ...props }) {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name='password'
-              render={({ field }) => (
-                <FormItem>
-                  <div className='flex items-center'>
-                    <FormLabel>Senha</FormLabel>
-                  </div>
-                  <FormControl>
-                    <div className='relative'>
-                      <Lock className='absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground' />
-                      <Input type='password' {...field} className='pl-10' />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <Button
               type='submit'
               className='w-full'
@@ -114,15 +100,15 @@ export function LoginForm({ className, ...props }) {
               {mutation.isLoading ? (
                 <LoaderCircle className='mr-2 h-4 w-4 animate-spin' />
               ) : (
-                <LogIn className='mr-2 h-4 w-4' />
+                <MailQuestion className='mr-2 h-4 w-4' />
               )}
-              {mutation.isLoading ? 'A entrar...' : 'Entrar'}
+              {mutation.isLoading ? 'A enviar...' : 'Enviar Email'}
             </Button>
           </form>
           <div className='mt-4 text-center text-sm'>
-            Esqueceu sua senha?{' '}
-            <a href='/forgot-password' className='underline underline-offset-4'>
-              Recupere aqui
+            Lembrou-se da senha?{' '}
+            <a href='/' className='underline underline-offset-4'>
+              Voltar ao Login
             </a>
           </div>
         </Form>
