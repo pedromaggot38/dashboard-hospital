@@ -20,7 +20,6 @@ import api from '@/services/api.js';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { EllipsisVertical, LogOut, UserCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
 
 const logoutUser = async () => {
   const response = await api.get('/auth/logout');
@@ -28,7 +27,6 @@ const logoutUser = async () => {
 };
 
 export function NavUser({ user }) {
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { isMobile } = useSidebar();
 
@@ -37,7 +35,6 @@ export function NavUser({ user }) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['currentUser'] });
       toast.success('Sessão encerrada');
-      navigate('/', { replace: true });
     },
     onError: (error) => {
       const errorMessage =

@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import { Outlet, useNavigate } from 'react-router-dom';
-import api from '@/services/api.js';
 import { LoaderCircle } from 'lucide-react';
 import { AppSidebar } from '@/components/dashboard-sidebar.jsx';
 import {
@@ -8,18 +7,8 @@ import {
   SidebarInset,
   SidebarProvider,
 } from '@/components/ui/sidebar.jsx';
-
-const fetchUser = async () => {
-  try {
-    const { data } = await api.get('/users/me');
-    if (!data?.data?.user) {
-      throw new Error('Nenhum usuário encontrado na sessão.');
-    }
-    return data;
-  } catch (error) {
-    throw new Error(error.response?.data?.message || 'Usuário não autenticado');
-  }
-};
+import { useEffect } from 'react';
+import { fetchUser } from '@/services/authService.js';
 
 const AuthenticatedLayout = () => {
   const navigate = useNavigate();
@@ -34,6 +23,12 @@ const AuthenticatedLayout = () => {
     refetchOnWindowFocus: false,
   });
 
+  useEffect(() => {
+    if (isError) {
+      navigate('/', { replace: true });
+    }
+  }, [isError, navigate]);
+
   if (isLoading) {
     return (
       <div className='flex min-h-screen items-center justify-center'>
@@ -42,30 +37,25 @@ const AuthenticatedLayout = () => {
     );
   }
 
-  if (isError) {
-    navigate('/', { replace: true });
+  if (!user) {
     return null;
   }
 
-  if (user) {
-    return (
-      <SidebarProvider
-        style={{
-          '--sidebar-width': '16rem',
-          '--sidebar-width-mobile': '20rem',
-        }}
-      >
-        <Sidebar variant='inset'>
-          <AppSidebar user={user.data.user} />
-        </Sidebar>
-        <SidebarInset className='p-4'>
-          <Outlet />
-        </SidebarInset>
-      </SidebarProvider>
-    );
-  }
-
-  return null;
+  return (
+    <SidebarProvider
+      style={{
+        '--sidebar-width': '16rem',
+        '--sidebar-width-mobile': '20rem',
+      }}
+    >
+      <Sidebar variant='inset'>
+        <AppSidebar user={user} />
+      </Sidebar>
+      <SidebarInset className='p-4'>
+        <Outlet />
+      </SidebarInset>
+    </SidebarProvider>
+  );
 };
 
 export default AuthenticatedLayout;
