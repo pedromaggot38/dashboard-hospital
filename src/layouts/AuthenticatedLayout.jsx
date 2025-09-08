@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Outlet, useNavigate } from 'react-router-dom';
 import api from '@/services/api.js';
@@ -13,10 +12,12 @@ import {
 const fetchUser = async () => {
   try {
     const { data } = await api.get('/users/me');
+    if (!data?.data?.user) {
+      throw new Error('Nenhum usuário encontrado na sessão.');
+    }
     return data;
-    // eslint-disable-next-line no-unused-vars
   } catch (error) {
-    throw new Error('Utilizador não autenticado');
+    throw new Error(error.response?.data?.message || 'Usuário não autenticado');
   }
 };
 
@@ -33,18 +34,17 @@ const AuthenticatedLayout = () => {
     refetchOnWindowFocus: false,
   });
 
-  useEffect(() => {
-    if (!isLoading && isError) {
-      navigate('/', { replace: true });
-    }
-  }, [isLoading, isError, navigate]);
-
   if (isLoading) {
     return (
       <div className='flex min-h-screen items-center justify-center'>
         <LoaderCircle className='h-8 w-8 animate-spin' />
       </div>
     );
+  }
+
+  if (isError) {
+    navigate('/', { replace: true });
+    return null;
   }
 
   if (user) {

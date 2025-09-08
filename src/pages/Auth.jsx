@@ -9,10 +9,12 @@ import { LoaderCircle } from 'lucide-react';
 const fetchUser = async () => {
   try {
     const { data } = await api.get('/users/me');
+    if (!data?.data?.user) {
+      throw new Error('Nenhum usuário encontrado na sessão.');
+    }
     return data;
-    // eslint-disable-next-line no-unused-vars
   } catch (error) {
-    throw new Error('Não autenticado');
+    throw new Error(error.response?.data?.message || 'Usuário não autenticado');
   }
 };
 
@@ -24,11 +26,7 @@ const checkRootStatus = async () => {
 const AuthPage = () => {
   const navigate = useNavigate();
 
-  const {
-    data: user,
-    isSuccess: isAuth,
-    isLoading: isAuthLoading,
-  } = useQuery({
+  const { isSuccess: isAuth, isLoading: isAuthLoading } = useQuery({
     queryKey: ['currentUser'],
     queryFn: fetchUser,
     retry: false,
@@ -43,16 +41,16 @@ const AuthPage = () => {
   } = useQuery({
     queryKey: ['rootStatus'],
     queryFn: checkRootStatus,
-    enabled: !isAuth,
+    enabled: !isAuth && !isAuthLoading,
   });
 
   useEffect(() => {
-    if (isAuth && user) {
+    if (isAuth) {
       navigate('/dashboard', { replace: true });
     }
-  }, [isAuth, user, navigate]);
+  }, [isAuth, navigate]);
 
-  if (isAuthLoading || (isRootLoading && !isAuth)) {
+  if (isAuthLoading || isRootLoading) {
     return (
       <div className='flex items-center justify-center'>
         <LoaderCircle className='h-8 w-8 animate-spin' />
@@ -73,7 +71,11 @@ const AuthPage = () => {
   }
 
   if (!isAuth) {
-    return rootStatus?.data?.exists ? <LoginForm /> : <CreateRootForm />;
+    if (rootStatus?.data?.exists) {
+      return <LoginForm />;
+    } else {
+      return <CreateRootForm />;
+    }
   }
 
   return (
